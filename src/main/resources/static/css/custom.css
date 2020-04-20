@@ -16,13 +16,13 @@ header a{
 header ul{
   margin: 0;
   padding: 0;
-}
+  }
 
 header li{
   float: left;
   display: inline;
-  padding: 0 40px 0 20px;
-}
+  padding: 0 40px 0 20px; 
+ }
 
 header #branding{
 float:left;
@@ -30,12 +30,12 @@ float:left;
 
 header #branding h1{
   margin: 0;
-}
+  }
 
 header nav{
   float: right;
   margin-top: 10px;
-}
+ }
 
 header .highlight, header .current a{
   color:#e8491d;
@@ -46,5 +46,3 @@ header a:hover{
   color:#cccccc;
   font-weight: bold;
   }
-  
-  
