@@ -12,17 +12,25 @@ import project.home.webapp.data.Bmi;
 @Controller
 public class WebController {
     
-   @GetMapping({"/index","/","/start"})
+   @GetMapping({"/index","/"})
+   public String index(Model model) {
+       model.addAttribute("item", new Bmi());
+       return "index";
+   }
+    
+   
+   @GetMapping("/start")
    public String start(Model model) {
        model.addAttribute("item", new Bmi());
        return "start";
    }
+     
+   
    @PostMapping("/ausgabebmi")
   public String ausgabebmi(Model model,
           @Valid @ModelAttribute("item") Bmi bmi,
           BindingResult bindingResult) {
     model.addAttribute("item", bmi);
     return "ausgabebmi";
-    
-  }
+    }
 }
