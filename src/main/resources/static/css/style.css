@@ -20,12 +20,17 @@ color: #505962;
 
 /*--- Navigation ---*/
 .navbar{
+    width: 100%;
+    overflow:hidden;
     display:block;
     text-transform: uppercase;
     font-weight: 700;
     font-size: .9rem;
     letter-spacing: .1rem;
     background-color: 0,0,0,0.6)!important;
+    position:fixed;
+        top:0;
+    
 }
 
 .navbar-brand img{
@@ -33,26 +38,46 @@ color: #505962;
     top:0;
     left:0;
     max-width: 100%;
-    max-height: 100%;
-    padding-top:  0px;
-    
+    max-height: 100%;      
 }
 
 .navbar-nav li {
-    padding-right: .50rem;
+    padding-right: 25px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
     color: white;
+    padding-top: .8rem;
     
 }
 
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:hover{
+    color:#1ebba3;
+}
 
 /*--- Landing Page ---*/
 .home-inner{
    background: url("images/Landingpage.png);
-    background-size: cover;
-    background-position: center;
+   background-size: cover;
+   background-position: center;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
 }
 
 
+
+.footer {
+   height: 50px;   
+   padding-top: 10px;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color:#ffffff;
+   background-color: #e8491d;
+   color: white;
+   text-align: center;   
+}
