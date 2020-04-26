@@ -10,10 +10,9 @@
     <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <header>
-            <div class="container">
+        <header>            
                 <div id="branding">
-                    <h1><span class="highlight">Welcome</span> to my Page</h1>
+                    <a class="navbar-brand" href="#"><img th:src="@{/images/Logo_klein.png}" width="100" height ="100" alt="logo" class="image-block"></a>
                 </div>
                 <nav>
                     <ul>
@@ -29,7 +28,7 @@
          <form th:action="@{/ausgabebmi}" method="POST"
              th:object="${item}">
                    
-        <div class="container">
+        <div class="weight">
           <label class="col-lg-4 control-label">Größe</label>
             <label for="titel"></label>
           <input th:field="*{groesse}"
@@ -40,7 +39,7 @@
           <div th:if="${#fields.hasErrors('groesse')}" th:errors="*{groesse}" class="invalid-feedback"></div>
         </div>            
              
-          <div class="container">
+          <div class="weight">
           <label for="titel">Gewicht</label>
           <input th:field="*{gewicht}"
                  type="text"
@@ -55,7 +54,9 @@
                  </div>     
         </form> 
         
-
+        
+        
+       <div class="container"
         <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
 
 Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
@@ -277,4 +278,5 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
         <p>Copyright &copy; Dominque Mariacher <script>new Date().getFullYear()>2010&&document.write(+new Date().getFullYear());</script></p>
     </div>
    
-</html>
+</div>
+       </html>
