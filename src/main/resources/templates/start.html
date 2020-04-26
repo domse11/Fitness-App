@@ -17,9 +17,9 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="ausgabebmi.html">Home</a></li>
+                        <li><a href="#">Home</a></li>
                         <li><a href="ausgabebmi.html">Ausgabe</a></li>
-                        <li><a href="contact.html">contact</a></li>
+                        <li><a href="#">contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -29,9 +29,9 @@
          <form th:action="@{/ausgabebmi}" method="POST"
              th:object="${item}">
                    
-        <div class="form-group">
+        <div class="container">
           <label class="col-lg-4 control-label">Größe</label>
-            <label for="titel">Größe</label>
+            <label for="titel"></label>
           <input th:field="*{groesse}"
                  type="text"
                  placeholder="Bitte die Größe in cm angeben (z.b. 177)"
@@ -40,7 +40,7 @@
           <div th:if="${#fields.hasErrors('groesse')}" th:errors="*{groesse}" class="invalid-feedback"></div>
         </div>            
              
-          <div class="form-group">
+          <div class="container">
           <label for="titel">Gewicht</label>
           <input th:field="*{gewicht}"
                  type="text"
@@ -50,11 +50,11 @@
           <div th:if="${#fields.hasErrors('gewicht')}" th:errors="*{gewicht}" class="invalid-feedback"></div>
         </div> 
              
-          <div class="mt-1 float-middle">
-                 <button type="submit" class="btn btn-primary">Berechne</button>
-                </div>     
+          <div class="mt-1 text-center">
+                 <button class="btn btn-outline-orange">Berechne<i class="fas fa-weight pl-1"></i></button>
+                 </div>     
+        </form> 
         
-         </form>
 
         <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
 
@@ -276,5 +276,5 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
     <div class="footer">
         <p>Copyright &copy; Dominque Mariacher <script>new Date().getFullYear()>2010&&document.write(+new Date().getFullYear());</script></p>
     </div>
-    </footer>
+   
 </html>

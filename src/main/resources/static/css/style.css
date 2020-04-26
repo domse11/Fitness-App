@@ -34,7 +34,7 @@ color: #505962;
 }
 
 .navbar-brand img{
-    position: absolute;
+    
     top:0;
     left:0;
     max-width: 100%;
@@ -53,21 +53,31 @@ color: #505962;
 
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link:hover{
-    color:#1ebba3;
+    color:#e0a800;
 }
 
 /*--- Landing Page ---*/
 .home-inner{
-   background: url("images/Landingpage.png);
+   background: url(/images/Landingpage.PNG);
    background-size: cover;
    background-position: center;
+  
 }
+
+.caption {
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 38%;
+}
+
+
+
 .sticky {
   position: fixed;
   top: 0;
   width: 100%
 }
-
 
 
 .footer {
