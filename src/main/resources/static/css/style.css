@@ -27,7 +27,7 @@ color: #505962;
     font-weight: 700;
     font-size: .9rem;
     letter-spacing: .1rem;
-    background-color: 0,0,0,0.6)!important;
+    background-color: (0,0,0,0.6)!important;
     position:fixed;
         top:0;
     

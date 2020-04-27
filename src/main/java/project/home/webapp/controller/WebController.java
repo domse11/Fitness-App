@@ -29,20 +29,4 @@ public class WebController {
        return "start";
    }
      
-   
-   @PostMapping("/ausgabebmi")
-  public String ausgabebmi(Model model,
-          @Valid @ModelAttribute("item") Bmi bmi,
-          BindingResult bindingResult) {
-    model.addAttribute("item", bmi);
-    return "ausgabebmi";
-    }
-  
-  private static double berechneBMI(Integer groesse, Integer gewicht){
-      groesse = bmigroesse;
-      gewicht = bmigewicht;
-      bmi= gewicht / (groesse * groesse);
-  }
-          
-
 }

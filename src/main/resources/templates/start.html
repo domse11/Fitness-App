@@ -23,10 +23,10 @@
                 </nav>
             </div>
         </header>
-        <br>
-        </br>
-            
-
+       <br><br><br><br><br>
+        
+        
+              
          <form th:action="@{/ausgabebmi}" method="POST"
              th:object="${item}">
                    
@@ -35,7 +35,7 @@
             <label for="titel"></label>
           <input th:field="*{groesse}"
                  type="text"
-                 placeholder="Bitte die Größe in cm angeben (z.b. 177)"
+                 placeholder="Bitte die Größe in Zentimeter angeben: (zb '177')"
                  class="form-control"
                  th:errorclass="is-invalid"/>
           <div th:if="${#fields.hasErrors('groesse')}" th:errors="*{groesse}" class="invalid-feedback"></div>
@@ -45,7 +45,7 @@
           <label for="titel">Gewicht</label>
           <input th:field="*{gewicht}"
                  type="text"
-                 placeholder="Bitte das Gewicht in Kilogramm angeben (z.b. 80kg)"
+                 placeholder="Bitte das Gewicht in Kilogramm angeben: (zb '80')"
                  class="form-control"
                  th:errorclass="is-invalid"/>
           <div th:if="${#fields.hasErrors('gewicht')}" th:errors="*{gewicht}" class="invalid-feedback"></div>

@@ -1,56 +1,59 @@
 package project.home.webapp.data;
 
 import java.io.Serializable;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 
 public class Bmi implements Serializable{
     
-   private int groesse;
-   private int gewicht;
-   private int alter;
+   private double groesse;
+    @NotNull(message="Your height is required")
+    @Min(value=50, message="Sie können nicht kleiner als 50 Zentimeter sein")
+    @Max(value=250, message="Sie können nicht Größer als 2,5 Meter sein.")
+   
+   
+    private double gewicht;
+
+    @NotNull(message = "Your weight is required")
+    @Min(value = 10, message = "You cannot be lighter than 10 kilograms")
+    @Max(value =600, message="You cannot be heavier than 600 kilograms")
    
    public Bmi(){       
    }
 
-    public Bmi(int groesse, int gewicht, int alter) {
+    public Bmi(double groesse, double gewicht) {
         this.groesse = groesse;
         this.gewicht = gewicht;
-        this.alter = alter;
     }
 
-    public int getGroesse() {
+    public double getGroesse() {
         return groesse;
     }
 
-    public void setGroesse(int groesse) {
+    public void setGroesse(double groesse) {
         this.groesse = groesse;
     }
 
-    public int getGewicht() {
+    public double getGewicht() {
         return gewicht;
     }
 
-    public void setGewicht(int gewicht) {
+    public void setGewicht(double gewicht) {
         this.gewicht = gewicht;
     }
-
-    public int getAlter() {
-        return alter;
+    
+    public double getBmi() {
+        return gewicht / (groesse * groesse);
     }
 
-    public void setAlter(int alter) {
-        this.alter = alter;
-    }
-    
-      public int getBmi() {
-         return gewicht / (groesse * groesse);
-          }
-    
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + this.groesse;
-        hash = 73 * hash + this.gewicht;
-        hash = 73 * hash + this.alter;
+        int hash = 3;
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.groesse) ^ (Double.doubleToLongBits(this.groesse) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.gewicht) ^ (Double.doubleToLongBits(this.gewicht) >>> 32));
         return hash;
     }
 
@@ -66,23 +69,20 @@ public class Bmi implements Serializable{
             return false;
         }
         final Bmi other = (Bmi) obj;
-        if (this.groesse != other.groesse) {
+        if (Double.doubleToLongBits(this.groesse) != Double.doubleToLongBits(other.groesse)) {
             return false;
         }
-        if (this.gewicht != other.gewicht) {
-            return false;
-        }
-        if (this.alter != other.alter) {
+        if (Double.doubleToLongBits(this.gewicht) != Double.doubleToLongBits(other.gewicht)) {
             return false;
         }
         return true;
-        
-        
     }
 
     @Override
     public String toString() {
-        return "Bmi{" + "groesse=" + groesse + ", gewicht=" + gewicht + ", alter=" + alter + '}';
+        return "Bmi{" + "groesse=" + groesse + ", gewicht=" + gewicht + '}';
     }
+
+ 
    
-}
+    }
