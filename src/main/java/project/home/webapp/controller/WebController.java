@@ -1,8 +1,6 @@
 package project.home.webapp.controller;
 
 import javax.validation.Valid;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,11 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import project.home.webapp.data.Bmi;
 
 @Controller
-@ComponentScan
-@EnableAutoConfiguration
 public class WebController {
     
-   @GetMapping({"/index","/"})
+     @GetMapping({"/index","/"})
    public String index(Model model) {
        model.addAttribute("item", new Bmi());
        return "index";
@@ -29,4 +25,13 @@ public class WebController {
        return "start";
    }
      
+   
+   @PostMapping("/ausgabebmi")
+  public String ausgabebmi(Model model,
+          @Valid @ModelAttribute("item") Bmi bmi,
+          BindingResult bindingResult) {
+    model.addAttribute("item", bmi);
+    return "ausgabebmi";
+     
+}
 }

@@ -1,24 +1,14 @@
 package project.home.webapp.data;
 
 import java.io.Serializable;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+
 
 
 public class Bmi implements Serializable{
     
    private double groesse;
-    @NotNull(message="Your height is required")
-    @Min(value=50, message="Sie können nicht kleiner als 50 Zentimeter sein")
-    @Max(value=250, message="Sie können nicht Größer als 2,5 Meter sein.")
-   
-   
+       
     private double gewicht;
-
-    @NotNull(message = "Your weight is required")
-    @Min(value = 10, message = "You cannot be lighter than 10 kilograms")
-    @Max(value =600, message="You cannot be heavier than 600 kilograms")
    
    public Bmi(){       
    }
