@@ -1,29 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 
-header{   
+header{   /*NEW start*/
+    background: url(/images/Logo_klein3.png);
+    background-repeat: no-repeat;
+    background-position:25% 20%;
+    background-size: contain;
+    
+    /*NEW end*/
+    
     position: fixed;
-    padding-left: 300px;
-    padding-right: 300px;
+    
+    padding-left: 350px;
+    padding-right: 350px;
     width: 100%;
-    height: 86px;
-    background:#35424a;
-    color:#ffffff;
-    padding-top: 20px;
+    height: 100px;    
+    max-width: 100%;
+    max-height: 100%;   
+    color:#ffffff;    
     min-height: 70px;
     border-bottom: #e8491d 3px solid;
-    font-family: 'Lato', sans-serif;
-    font-weight: 100;
+    font-family: 'Lato', sans-serif;    
     overflow: hidden;
-    background-color: rgba(0,0,0,0.6)!important;
+    background-color: rgba(0,0,0,0.80)!important;
 }
 
 header a{
-    color: #ffffff;
-    display:block;
+    color: #ffffff;    
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 18px;        
+}
+
+header-brand{
+   
     
 }
 
@@ -31,7 +41,7 @@ header ul{
     
 }
 
-header li{
+header li{    
     float: left;
     display: inline;
     margin: 0 40px 0 20px;
@@ -39,21 +49,23 @@ header li{
     padding-top: 7.5px;
 }
 
-header #branding{
+header #branding{ 
+    position: fixed;
     float:left;
-    margin-top: 0px;
+    margin-top: -8.5px;
     padding-top: 0px;
+    padding-bottom: 30px;
 }
 
+/*-- nicht in verwendung da Logo verwendet wird! --
 header #branding h1{
     margin-top: 0px;
     padding-top: 0px;
-
-}
+}*/
 
 header nav{
-    float: right;
-    margin-top: 0px;
+    padding-top: 20px;
+    float: right;    
 }
 
 header .highlight, header .current a{
@@ -61,10 +73,11 @@ header .highlight, header .current a{
     font-weight: bold;
 }
 
+/* Hover */
 header a:hover{
     color:#e8491d;  
     font-weight: bold;
-    transition: 0s;
+    transition: 0.25s;
 }
 
 ul:hover li a
@@ -81,51 +94,54 @@ ul li a:hover
     filter: blur(0);    
 }
 
+/* ende Hover */
 
-.form-control{     
+.form-control{
+    margin: 15px;
     position: center;
     text-align: left;
     margin: 0 auto;
-    padding-top: 10px;
-    width: 30%;     
+    padding-top: 5px;
+    width: 25%;     
 }
 
 .container{
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 10px;
+    
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-top: 20px;
     text-align:center;
     height: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     font-family: sans-serif;   
     margin-bottom: 5px;
 }
 
-
-.weight:before{
-    position: absolute;
-    margin-top: 30px;
-    content:'';
-   
-}
-
+/* Bmi Rechner Anfang */
 .weight{
+    
+    margin-bottom: 10px;
     padding-left: 100px;
     padding-right: 100px;        
     text-align: center;
-    height: 100%;    
+    height: 80%;    
     padding-bottom: 10px;
     font-family: sans-serif;   
     margin-bottom: 5px;     
 }
 
-body {
-    margin: 0;
-    padding: 0;
+/* Bmi Rechner Ende */
+
+
+/* Body */
+body {    
+    margin: 0px;
+    padding: 0px;
     justify-content: center;
+    }
 
-}
 
+/* unused
 .caption {
     width: 100%;
     max-width: 100%;
@@ -133,16 +149,14 @@ body {
     top: 38%;
 }
 
-
 .sticky {
     position: fixed;
     top: 0;
     width: 100%
 }
+unused ende */ 
 
-
-
-.footer {
+.footer {    
     height: 50px;   
     padding-top: 10px;
     left: 0;
@@ -151,6 +165,5 @@ body {
     color:#ffffff;
     background-color: #e8491d;
     color: white;
-    text-align: center;   
+    text-align: center;      
 }
-
