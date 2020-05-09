@@ -31,7 +31,7 @@ public class WebController {
           @Valid @ModelAttribute("item") Bmi bmi,
           BindingResult bindingResult) {
     model.addAttribute("item", bmi);
-    return "ausgabebmi";
-     
-}
+    return "ausgabebmi"; 
+
+  }
 }

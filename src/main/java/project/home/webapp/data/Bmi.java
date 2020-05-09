@@ -6,9 +6,8 @@ import java.io.Serializable;
 
 public class Bmi implements Serializable{
     
-   private double groesse;
-       
-    private double gewicht;
+   private double groesse;       
+   private double gewicht;
    
    public Bmi(){       
    }
@@ -35,9 +34,9 @@ public class Bmi implements Serializable{
     }
     
     public double getBmi() {
-        return gewicht / (groesse * groesse);
+        double bmi = gewicht / (groesse * groesse);
+        return bmi;
     }
-
 
     @Override
     public int hashCode() {

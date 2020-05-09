@@ -44,7 +44,7 @@
           <label for="titel">Gewicht</label>
           <input th:field="*{gewicht}"
                  type="text"
-                 placeholder="Bitte das Gewicht in Kilogramm angeben (z.b. 80kg)"
+                 placeholder="Bitte das Gewicht in Kilogramm angeben (z.b. 80)"
                  class="form-control"
                  th:errorclass="is-invalid"/>
           <div th:if="${#fields.hasErrors('gewicht')}" th:errors="*{gewicht}" class="invalid-feedback"></div>
@@ -53,10 +53,15 @@
           <div class="mt-1 text-center">                
                  <button type="submit" class="btn btn-white">Berechne</i></button>
           </div>     
-        </form> 
-        
-          
-        
+        </form>
+       
+       <p>
+       <!-- <img th:src="@{/images/BMI.jpg}"/> -->
+       <img th:src="@{/images/bmi-grafik.png}" alt="logo" th:class="bmi">
+       </p>
+       
+       <!-- style="width:700px;height:410px; -->
+       
        <div class="container"
         <p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
 
