@@ -1,43 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <title>Bmi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet" type="text/css"/>
-    <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css"/>
+    <head>
+        <meta charset="UTF-8">
+        <title>Bmi</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/css/ausgabe.css}" rel="stylesheet" type="text/css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css"/>
+
+        <script th:src="@{/js/jquery-3.4.1.js}" type="text/javascript"></script>
+        <script th:src="@{/js/popper.js}" type="text/javascript"></script>
+        <script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
     </head>
     <body>
-         <div class="container">
 
-      <div class="jumbotron mt-4">
-        <h1 class="display-4">Ausgabe Ihres Bmi - Wertes</h1>
-      </div>
-  
-          <div class="row">
-                <div class="col-2">Bmi</div>
+        <div class="jumbotron">
+            <h1 class="display-5">Bmi - Ausgabe</h1>
+        </div>
+
+        <div class="container">
+            <!--<div class="row">
+                <div class="col-2">BMI:</div>
                 <div class="col text-right" th:text="${#numbers.formatDecimal(item.Bmi,1,2)}"></div>
+
             </div></br>
-         
+            -->
             <div class="row">
-                <div class="col-2">groesse</div>
-                <div class="col text-right" th:text="${#numbers.formatDecimal(item.groesse,1,2)}"></div>
+                <div class="col-2">Größe:</div>
+                <div class="col text-right" th:text="${#numbers.formatDecimal(item.groesse,1,0)}"></div>
             </div></br>
             <div class="row">
-                <div class="col-2">gewicht</div>
-                <div class="col text-right" th:text="${#numbers.formatDecimal(item.gewicht,1,2)}"></div>
+                <div class="col-2">Gewicht:</div>
+                <div class="col text-right" th:text="${#numbers.formatDecimal(item.gewicht,1,0)}"></div>
             </div></br>
 
-            <div class="mt-5 float-left">
-             <a href="start" class ="btn btn-secondary">zurück</a>
-            </div>
+
+            <div id="box">   <p> Sie haben einen BMI von: </p>
+                <span style="text-decoration: underline;font-size: 18.5px;" th:text="${#numbers.formatDecimal(item.Bmi,1,2)}"></span></div>
+
+        </div>
+        <div class="mt-5 float-center text-center">
+            <a href="start" class ="btn btn-secondary">zurück</a>
+        </div>
+
+        <p>
+            <img th:src="@{/images/bmi-grafik.png}" alt="logo" th:class="bmi">
+        </p>  
+
+        <!-- Tabelle -->
+        <table class = "table">
+            <thead>
+                <tr>
+                    <th>Größe (in cm)</th>
+                    <th>Gewicht (in kg)</th>
+                    <th>Body Mass Index (BMI)</th>
+                </tr>
+            </thead>
+            <tbody>            
+                <tr th:each="bmi: ${bmis}">
+                    <td th:text="${#numbers.formatDecimal(bmi.groesse,1,0)}"></td>
+                    <td th:text="${#numbers.formatDecimal(bmi.gewicht,1,0)}"></td>
+                    <td th:text="${#numbers.formatDecimal(bmi.Bmi,1,2)}"></td>
+                </tr>
+            </tbody>
+        </table>
         
-     
-             
-    <script th:src="@{/js/jquery-3.4.1.js}" type="text/javascript"></script>
-    <script th:src="@{/js/popper.js}" type="text/javascript"></script>
-    <script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
-             
+        
+        <div class="footer">
+            <p>Copyright &copy; Dominque Mariacher <script>new Date().getFullYear() > 2010 && document.write(+new Date().getFullYear());</script></p>
+        </div>
+
     </body>
 </html>

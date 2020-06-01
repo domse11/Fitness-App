@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Liste</title>
+</head>
+<body>
+<table class="table table-bordered table-striped text-center">
+            <thead>
+                <tr>
+                    <th>Größe</th>
+                    <th>Gewicht</th>
+                    <th>Body Mass Index(BMI)</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                <tr th:each="bmi: ${bmis}">
+                    <td th:text="${bmi.groesse}"></td>
+                    <td th:text="${bmi.gewicht}"></td>
+                    <td th:text="${bmi.bmi}"></td>
+ 
+
+                </tr>
+
+            </tbody>
+        </table>
+
+</body>
+</html>
