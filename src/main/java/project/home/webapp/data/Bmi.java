@@ -1,37 +1,60 @@
 package project.home.webapp.data;
 
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Bmi {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ID;
+    private int id;
+    
+    /*@NotNull
+    @Min(140)
+    @Max(220)*/
+    
+    //@NotEmpty(message="Bitte eine Größe eingeben")
+    private double groesse; 
 
-    private double groesse;
-
+    /*@NotNull
+    @Min(40)
+    @Max(120)*/
+    //@NotEmpty(message="Bitte ein Gewicht eingeben")
     private double gewicht;
+        
     private double bmi;
+    
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private LocalDateTime tageszeit;
 
     public Bmi() {
     }
 
-    public Bmi(double groesse, double gewicht) {
+    public Bmi(int id, double groesse, double gewicht) {
+        this.id = id;
         this.groesse = groesse;
         this.gewicht = gewicht;
+        setBmi(bmi);
         getBmi();
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public double getGroesse() {
@@ -62,7 +85,7 @@ public class Bmi {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + (int) (Double.doubleToLongBits(this.ID) ^ (Double.doubleToLongBits(this.ID) >>> 32));
+        hash = 53 * hash + (int) (Double.doubleToLongBits(this.id) ^ (Double.doubleToLongBits(this.id) >>> 32));
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.groesse) ^ (Double.doubleToLongBits(this.groesse) >>> 32));
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.gewicht) ^ (Double.doubleToLongBits(this.gewicht) >>> 32));
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.bmi) ^ (Double.doubleToLongBits(this.bmi) >>> 32));
@@ -81,7 +104,7 @@ public class Bmi {
             return false;
         }
         final Bmi other = (Bmi) obj;
-        if (Double.doubleToLongBits(this.ID) != Double.doubleToLongBits(other.ID)) {
+        if (Double.doubleToLongBits(this.id) != Double.doubleToLongBits(other.id)) {
             return false;
         }
         if (Double.doubleToLongBits(this.groesse) != Double.doubleToLongBits(other.groesse)) {
@@ -98,7 +121,15 @@ public class Bmi {
 
     @Override
     public String toString() {
-        return "Bmi{" + "id=" + ID + ", groesse=" + groesse + ", gewicht=" + gewicht + ", bmi=" + bmi + '}';
+        return "Bmi{" + "id=" + id + ", groesse=" + groesse + ", gewicht=" + gewicht + ", bmi=" + bmi + '}';
+    }
+
+    public LocalDateTime getTageszeit() {
+        return tageszeit;
+    }
+
+    public void setTageszeit() {
+        this.tageszeit = LocalDateTime.now();
     }
 
 }

@@ -5,4 +5,6 @@ import project.home.webapp.data.Bmi;
 
 public interface BmiRepository extends JpaRepository<Bmi, Integer>{
     
+    
+    
 }

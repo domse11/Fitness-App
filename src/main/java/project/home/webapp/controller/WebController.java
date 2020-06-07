@@ -26,20 +26,21 @@ public class WebController {
         return "start";
     }
 
-    @GetMapping("/index")
+    // alte Startseite (Test)
+    /*@GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("item", new Bmi());
         return "index";
     }
-
-    /*@GetMapping("/")
+   /*@GetMapping("/")
     public String checkBmiInfo(@Valid Bmi bmi, BindingResult bindingresult){
         if (bindingResult.hasErrors()){
             return "start";
         }
         return "redirect:/ausgabebmi";
     }*/
-    
+    //Testen ob Daten in die DB geschrieben worden sind
+    /*
     @GetMapping("/bmi")
     public String showBmi(Model model) {
 
@@ -48,30 +49,51 @@ public class WebController {
 
         return "show_bmi";
     }
-
+     */
     private List<String> bmis = new ArrayList<>();
 
     @PostMapping("/ausgabebmi")
     public String ausgabebmi(Model model,
             @Valid @ModelAttribute("item") Bmi bmi,
             BindingResult bindingResult) {
+        bmi.setTageszeit();
+        bmi.getBmi();
+        bmiRepository.save(bmi);
 
         List<Bmi> bmis = bmiRepository.findAll();
         model.addAttribute("bmis", bmis);
-       /*model.addAttribute("item", bmi);*/
 
-                     
         return "ausgabebmi";
     }
 
+    @GetMapping({"/ausgabebmi"})
+    public String linkausgabebmi(Model model) {
+        model.addAttribute("item", new Bmi());
+        List<Bmi> bmis = bmiRepository.findAll();
+        model.addAttribute("bmis", bmis);
+
+        return "ausgabebmi";
+    }
+
+    @GetMapping("delete")
+    public String delete(Model model,
+            @RequestParam(name = "id") int id) {
+        Bmi last = bmiRepository.findAll().get((int) bmiRepository.count() - 1);
+        bmiRepository.deleteById(id);
+        if (id == last.getId()) {
+            return "redirect:/start";
+        }
+        return "redirect:/ausgabebmi";
+    }
+
+    //testdaten
     @GetMapping("/ausgabebmi/bmiliste")
     public String createBmi() {
-// testdaten
-        Bmi bmi = new Bmi(190, 90);
+        int pos = 0;
+        Bmi bmi = new Bmi(++pos, 180, 90);
 
         bmiRepository.save(bmi);
 
         return "bmi_created";
     }
-
 }
