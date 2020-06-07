@@ -25,6 +25,14 @@ public class WebController {
         model.addAttribute("item", new Bmi());
         return "start";
     }
+    
+    @GetMapping("/contact")
+    public String contact(Model model) {
+       model.addAttribute("item", new Bmi());
+        return "contact";
+    }
+    
+    
 
     // alte Startseite (Test)
     /*@GetMapping("/index")
