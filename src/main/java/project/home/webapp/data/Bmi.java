@@ -1,5 +1,6 @@
 package project.home.webapp.data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,23 +16,25 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Bmi {
+public class Bmi implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    /*@NotNull
+   
+    @NotNull(message="Bitte einen Text eingeben")
     @Min(140)
-    @Max(220)*/
-    
+    @Max(220) 
     //@NotEmpty(message="Bitte eine Größe eingeben")
+    // @NotNull
     private double groesse; 
 
-    /*@NotNull
+    @NotNull
     @Min(40)
-    @Max(120)*/
+    @Max(120)
     //@NotEmpty(message="Bitte ein Gewicht eingeben")
+     //@NotNull(message="Bitte ein Gewicht eingeben")
     private double gewicht;
         
     private double bmi;
@@ -130,6 +134,10 @@ public class Bmi {
 
     public void setTageszeit() {
         this.tageszeit = LocalDateTime.now();
+    }
+
+    public void addAttribute(String bmi, double gewicht) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

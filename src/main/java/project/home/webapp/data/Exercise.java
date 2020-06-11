@@ -10,19 +10,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "exercise")
+
 public class Exercise implements Serializable {
 
-    public Exercise() {
-    }
-
-    @Id
+      @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Exerciseid;
 
-    @NotNull
-    private String ExerciseType;
+     private String ExerciseType;
 
+     public Exercise() {
+    }
+    
     public Exercise(Integer Exerciseid, String ExerciseType) {
         this.Exerciseid = Exerciseid;
         this.ExerciseType = ExerciseType;

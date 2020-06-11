@@ -9,12 +9,15 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet" type="text/css"/>
         <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css"/>
 
-        <script th:src="@{/js/plotly-latest.min.js}"></script>
+
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
         <script th:src="@{/js/jquery-3.4.1.js}" type="text/javascript"></script>
         <script th:src="@{/js/popper.js}" type="text/javascript"></script>
         <script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
+            <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="js/popper.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
     </head>
     <body>
 
@@ -50,7 +53,36 @@
         <p>
             <img th:src="@{/images/bmi-grafik.png}" alt="logo" th:class="bmi">
         </p>  
+        
+<div id="testPie"></div>
+        <script th:inline="javascript">
+      var data = [{
+              values: [ [[${bmiGewicht}]], [[${bmiGroesse}]] ],
+          labels: ['Größe', 'Gewicht'],
+          type: 'pie'
+        }];
 
+      var layout = {
+        height: 600,
+        width: 600
+      };
+
+      Plotly.newPlot('testPie', data, layout);
+    </script>
+     <br>
+    <div id="tester" style="width:600px;height:250px; display: block;
+    margin-left: auto;
+    margin-right: auto"></div>
+   
+    <script>
+        
+	TESTER = document.getElementById('tester');
+	Plotly.newPlot( TESTER, [{
+	x: [1, 2, 3, 4, 5],
+	y: [1, 2, 4, 8, 16] }], {
+	margin: { t: 0 } } );
+</script>
+<br>
         <!-- Table -->
         <table class = "table">
             <thead>
@@ -79,8 +111,20 @@
         </table>
         <!-- Table end -->
 
-        <!-- Graph -->
+        <!-- Graph Start -->
 
+    <br>
+    <!-- Graph Ende -->
+    
+<!-- Thomas Test Popup Text
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+var message = [[${message}]];
+alert(message);
+
+/*]]>*/
+</script> -->
 
         <div class="footer">
             <p>Copyright &copy; Dominque Mariacher <script>new Date().getFullYear() > 2010 && document.write(+new Date().getFullYear());</script></p>

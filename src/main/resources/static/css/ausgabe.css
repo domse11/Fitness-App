@@ -56,7 +56,6 @@
     overflow-y: auto;
     overflow-style: auto;
     
-    
 }
 
 .buttons > div {
@@ -150,6 +149,16 @@ body {
 }
 
 .bmi {
+    padding-top: 25px;
+    width:35%;
+    height:35%;
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+    margin-bottom: 25px;
+}
+
+.erledigtPie {
     padding-top: 25px;
     width:35%;
     height:35%;

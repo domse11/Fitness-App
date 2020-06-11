@@ -21,6 +21,10 @@ public class BmiSessionData {
         bmiRepository.save(bmi);
     }
     
+     public void updateBmi(Bmi bmi){
+        bmiRepository.save(bmi);
+    }
+    
     public void deleteBmi(int id) {
         bmiRepository.deleteById(id);
         
@@ -29,5 +33,9 @@ public class BmiSessionData {
         return bmiRepository.findAll().get((int)bmiRepository.count() - 1);
     }
     
+    public List<Bmi> getBmi(){
+       return bmiRepository.findAll();       
+    }  
     
+ 
 }
