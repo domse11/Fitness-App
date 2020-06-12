@@ -45,6 +45,9 @@
             <div id="box">   <p> Sie haben einen BMI von: </p>
                 <span style="text-decoration: underline;font-size: 18.5px;" th:text="${#numbers.formatDecimal(item.Bmi,1,2)}"></span></div>
 
+                <div id ="box" th:switch="${#numbers.formatDecimal(item.groesse,1,0)}">
+                    
+                
         </div>
         <div class="mt-5 float-center text-center">
             <a href="start" class ="btn btn-secondary">zurück</a>
@@ -57,8 +60,8 @@
 <div id="testPie"></div>
         <script th:inline="javascript">
       var data = [{
-              values: [ [[${bmiGewicht}]], [[${bmiGroesse}]] ],
-          labels: ['Größe', 'Gewicht'],
+              values: [ [[${grapDatum}]], [[${bmiGewicht}]] ],
+          labels: ['Datum', 'Gewicht'],
           type: 'pie'
         }];
 
@@ -69,7 +72,9 @@
 
       Plotly.newPlot('testPie', data, layout);
     </script>
+    
      <br>
+     
     <div id="tester" style="width:600px;height:250px; display: block;
     margin-left: auto;
     margin-right: auto"></div>

@@ -70,34 +70,47 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
 
 
-        select: function (start, end) {
-            
-            $.getScript('/events/new',function(){
-            
-            
-//            
-//            
-//            
-//            
-//            
-//            var title = prompt("Event Name:");
-//            var eventData;
-//
-//            if (title) {
-//                eventData = {
-//                    title: title,
-//                    date: info.dateStr,
-//                    start: info.startStr,
-//                    end: info.endStr,
-//                };
-//
-//                calendar.addEvent(eventData);
-//            }
-//            calendar.unselect();
-//        },
-// 
+        /*select: function (info, start, end) {
+            var title = prompt("Event Name:");
+            var eventData;
+
+            if (title) {
+                eventData = {
+                    title: title,
+                    date: info.dateStr,
+                    start: info.startStr,
+                    end: info.endStr,
+                };
+
+                calendar.addEvent(eventData);
+            }
+            calendar.unselect();
+        },*/
         
+        /*add: function(date){
+             calendar.addEvent({
+              title: 'dynamic event',
+              start: date,
+              end: date
+            });
+        },*/
         
+       select: function (info, start, end)
+       $.ajax({
+       type: "POST",
+       contentType: "application/json",
+       url: "/deine/api/url",
+       data: JSON.stringify(eventData),
+       dataType: 'json',
+       success: function (data) {
+             calendar.addEvent(eventData);
+        },
+        error: function (e) {
+             console.log(e);
+         }
+ });
+
+
         
 //        destroy: function (info) {
 //            var title = prompt("Event Name:");

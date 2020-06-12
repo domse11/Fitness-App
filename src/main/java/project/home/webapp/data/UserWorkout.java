@@ -33,6 +33,14 @@ public class UserWorkout {
     public UserWorkout() {
     }
 
+    public UserWorkout(int WorkoutID, Date WorkoutDatum, Time WorkoutStart, Time WorkoutEnde, String Notiz) {
+        this.WorkoutID = WorkoutID;
+        this.WorkoutDatum = WorkoutDatum;
+        this.WorkoutStart = WorkoutStart;
+        this.WorkoutEnde = WorkoutEnde;
+        this.Notiz = Notiz;
+    }
+    
     public int getWorkoutID() {
         return WorkoutID;
     }

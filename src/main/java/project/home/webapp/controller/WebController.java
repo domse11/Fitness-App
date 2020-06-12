@@ -1,5 +1,6 @@
 package project.home.webapp.controller;
 
+import static java.nio.file.Files.size;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -13,35 +14,45 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.home.webapp.data.Bmi;
+import project.home.webapp.data.BmiSessionData;
 import project.home.webapp.repository.BmiRepository;
 
 @Controller
 public class WebController {
 
-    @Autowired
-    private BmiRepository bmiRepository;
+    @Autowired   
+    private BmiSessionData bmidata;
 
-    private void fülleBmi(Model model) {
-    //bmi.addAttribute("bmiGewicht", bmi.getGewicht());
-    //bmi.addAttribute("bmiGroesse", bmi.getGroesse());
+    private void fillGraphBmi(Model model) {
+   
+    List<Bmi> bmis = bmidata.getBmis();
+    
+    int size = bmis.size();
+    
+    String[] datum = new String[size];
+    Double[] bmi = new Double[size];
     
     
-    
-    
-    
-    
-    
-    
-    
-    
+    for (int pos = 0; pos < bmis.size(); pos++){
+        Bmi bmiz = bmis.get(pos);
+        datum[pos] = bmiz.getTageszeit().toString();
+        bmi[pos] = bmiz.getBmi();
+    }
+            
+        
+    model.addAttribute("bmiGewicht", bmi);
+    model.addAttribute("grapDatum",datum);
+   
     }
     
     @GetMapping({"/start", "/"})
     public String start(Model model) {
-        model.addAttribute("item", new Bmi());       
-        return "start";
+        model.addAttribute("item", new Bmi()); 
+       return "start";
     }
 
+    
+    // Contact Page -- obsolete -- 
     @GetMapping("/contact")
     public String contact(Model model) {
         model.addAttribute("item", new Bmi());
@@ -93,11 +104,15 @@ public class WebController {
         /*Bmi ausgabe auf der Console
         System.out.println(info.toString());*/
         bmiRepository.save(info);
+        BmiSessionData.save(info);
+        bmis.save(info);
+        bmidata.save(info);
 
-        List<Bmi> bmis = bmiRepository.findAll();
+        List<Bmi> bmis = bmidata.findAll();
         model.addAttribute("bmis", bmis);
         model.addAttribute("item", info);
-        
+        fillGraphBmi(model);               
+                
         return "ausgabebmi";
     }
 
@@ -107,13 +122,15 @@ public class WebController {
         List<Bmi> bmis = bmiRepository.findAll();
         model.addAttribute("bmis", bmis);
 
+        fillGraphBmi(model);
+        
         return "ausgabebmi";
     }
 
     @GetMapping("delete")
     public String delete(Model model,
             @RequestParam(name = "id") int id) {
-        Bmi last = bmiRepository.findAll().get((int) bmiRepository.count() - 1);
+        Bmi last = bmidata.findAll().get((int) bmiRepository.count() - 1);
         bmiRepository.deleteById(id);
         if (id == last.getId()) {
             return "redirect:/start";
@@ -131,4 +148,6 @@ public class WebController {
 
         return "bmi_created";
     }
+    
+  
 }

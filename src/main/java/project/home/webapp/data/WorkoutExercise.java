@@ -24,6 +24,13 @@ public class WorkoutExercise {
     private int Wiederholungen;
         
     private int Uebungsgewicht;
+
+    public WorkoutExercise(int ExerciseID, int WorkoutID, int Wiederholungen, int Uebungsgewicht) {
+        this.ExerciseID = ExerciseID;
+        this.WorkoutID = WorkoutID;
+        this.Wiederholungen = Wiederholungen;
+        this.Uebungsgewicht = Uebungsgewicht;
+    }
     
     
     public WorkoutExercise() {
