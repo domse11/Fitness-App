@@ -17,18 +17,20 @@
     margin-bottom: 15px;
 }
 
-.container{
+.ausgabe-container{
     height: 30%;
-    width: 14%;
+    width: 7.5%;
     color: white;
-    font-family: sans-serif; 
+    font-family: sans-serif;
     padding-right: 0px;
     padding-left: 0px;
     padding-top: 10px;
-    padding-bottom: 5px; 
+    padding-bottom: 5px;
     margin: 0 auto;
-    text-align:center;          
-   
+    text-align:center;
+    
+    
+
  }
 
 #container-border{
@@ -141,7 +143,7 @@ input[type="submit"]:hover,
 
 /* Body */
 body {     
-    background: url(/images/Bike.Jpeg) no-repeat center center fixed; 
+    background: url(/images/Bike.Jpeg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -149,33 +151,35 @@ body {
 }
 
 .bmi {
-    padding-top: 25px;
-    width:35%;
-    height:35%;
+    padding-top: 20px;
+    width:60%;
+    height:60%;
     margin-left: auto;
     margin-right: auto;
     display:flex;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
-.erledigtPie {
-    padding-top: 25px;
-    width:35%;
-    height:35%;
+.graphBMI {
+    padding-top: 7.5px;
+    width:31.5%;
+    height:30%;
     margin-left: auto;
     margin-right: auto;
-    display:flex;
-    margin-bottom: 25px;
+   display:flex;
+    margin-bottom: 5px;
 }
 
 #box {
-    padding-top: 20px;
-    
+    padding-top: 12px;
+    text-align: center;
+    color: white;
     margin-left: auto;
     margin-right: auto;
     border: 3px solid white;
-    height: 110px;
-    width: 270px;    
+    height: 225px;
+    width: 600px;
+
 }
 
 

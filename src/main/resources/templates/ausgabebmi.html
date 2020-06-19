@@ -8,132 +8,154 @@
         <link th:href="@{/css/ausgabe.css}" rel="stylesheet" type="text/css"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet" type="text/css"/>
         <link th:href="@{/css/main.css}" rel="stylesheet" type="text/css"/>
-
+        <link th:href="@{/images/Logo_klein3.png}" rel="shortcut icon"/>
 
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
         <script th:src="@{/js/jquery-3.4.1.js}" type="text/javascript"></script>
         <script th:src="@{/js/popper.js}" type="text/javascript"></script>
         <script th:src="@{/js/bootstrap.js}" type="text/javascript"></script>
-            <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
-    <script src="js/popper.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/jquery-3.4.1.js" type="text/javascript"></script>
+        <script src="js/popper.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
     </head>
     <body>
 
         <div class="jumbotron">
-            <h1 class="display-5">Bmi - Ausgabe</h1>
+            <h1 class="display-5">BMI - Berechnung</h1>
         </div>
 
-        <div class="container">
-            <!--<div class="row">
+        <div class="ausgabe-container">
+<!--            <div class="row">
                 <div class="col-2">BMI:</div>
                 <div class="col text-right" th:text="${#numbers.formatDecimal(item.Bmi,1,2)}"></div>
 
-            </div></br>
-            -->
+            </div><br>-->
+         
             <div class="row">
                 <div class="col-2">Größe:</div>
                 <div class="col text-right" th:text="${#numbers.formatDecimal(item.groesse,1,0)}"></div>
-            </div></br>
+            </div><br>
             <div class="row">
                 <div class="col-2">Gewicht:</div>
                 <div class="col text-right" th:text="${#numbers.formatDecimal(item.gewicht,1,0)}"></div>
-            </div></br>
-
+            </div><br>
+        </div>
 
             <div id="box">   <p> Sie haben einen BMI von: </p>
-                <span style="text-decoration: underline;font-size: 18.5px;" th:text="${#numbers.formatDecimal(item.Bmi,1,2)}"></span></div>
+            <span style="text-decoration: underline;font-size: 22.5px;" th:text="${#numbers.formatDecimal(item.Bmi,1,2)}"></span>
+            <br><br>
+             <label th:text="${class}" style="color: #ffffff ; text-decoration: underline"></label>
+                       <br>
+             <label th:text="${bemerkung}" style="color: #ffffff"></label>
+             <br>
+             <label th:text="${bemerkunglang}" style="color: #ffffff"></label>
+        </div>
 
-                <div id ="box" th:switch="${#numbers.formatDecimal(item.groesse,1,0)}">
-                    
+
+            <div class="mt-5 float-center text-center">
+                <a href="start" class ="btn btn-secondary">zurück</a>
+            </div>
+
+            <div class="bmi">
                 
-        </div>
-        <div class="mt-5 float-center text-center">
-            <a href="start" class ="btn btn-secondary">zurück</a>
-        </div>
+                <img th:src="@{/images/bmi-grafik.png}" alt="logo" th:class="bmi">
+            </div>
+              
 
-        <p>
-            <img th:src="@{/images/bmi-grafik.png}" alt="logo" th:class="bmi">
-        </p>  
-        
-<div id="testPie"></div>
-        <script th:inline="javascript">
-      var data = [{
-              values: [ [[${grapDatum}]], [[${bmiGewicht}]] ],
-          labels: ['Datum', 'Gewicht'],
-          type: 'pie'
-        }];
+            <div id="graphBMI" class="graphBMI"></div>
+            <script th:inline="javascript">
+                var data = [{
+                //     values: [ [[${grapDatum}]], [[${bmiGewicht}]] ],
+            x: [[${graphDatum}]],
+                    y: [[${graphBmi}]],
+                    type: 'lines'}];
+                var layout = {
+                    height: 600,
+                    width: 600,
+                    title:
+            {
+            text:'BMI-Graph',
+                    font:
+            {
+            family: 'Courier New, monospace',
+                    size: 24
+            }
+            },
+                    xaxis: {
+                    title: {
+                    text: 'Datum',
+                            font: {
+                            family: 'Courier New, monospace',
+                                    size: 18,
+                                    color: '#7f7f7f'
+                            }
+                    },
+                    },
+                    yaxis: {
+                    title: {
+                    text: 'BMI',
+                            font: {
+                            family: 'Courier New, monospace',
+                                    size: 18,
+                                    color: '#7f7f7f'
+                            }
+                    }
+                    }
+                };
+            Plotly.newPlot('graphBMI', data, layout, {editable: true});
+            </script>
 
-      var layout = {
-        height: 600,
-        width: 600
-      };
-
-      Plotly.newPlot('testPie', data, layout);
-    </script>
-    
-     <br>
-     
-    <div id="tester" style="width:600px;height:250px; display: block;
-    margin-left: auto;
-    margin-right: auto"></div>
-   
-    <script>
-        
-	TESTER = document.getElementById('tester');
-	Plotly.newPlot( TESTER, [{
-	x: [1, 2, 3, 4, 5],
-	y: [1, 2, 4, 8, 16] }], {
-	margin: { t: 0 } } );
-</script>
-<br>
-        <!-- Table -->
-        <table class = "table">
-            <thead>
-                <tr>
-                    <th>Datum & Uhrzeit</th>                    
-                    <th>Größe (in cm)</th>
-                    <th>Gewicht (in kg)</th>
-                    <th>Body Mass Index (BMI)</th>
-
-                </tr>
-            </thead>
-            <tbody>            
-                <tr th:each="bmi: ${bmis}">                    
-                    <td th:text="${#temporals.format(bmi.tageszeit, 'dd.MM.yyyy - HH:mm')}"></td>
-                    <td th:text="${#numbers.formatDecimal(bmi.groesse,1,0)}"></td>
-                    <td th:text="${#numbers.formatDecimal(bmi.gewicht,1,0)}"></td>
-                    <td th:text="${#numbers.formatDecimal(bmi.Bmi,1,2)}"></td>
+            <br>
 
 
-                    <td class="action">
-                        <a th:href="'delete?id=' + ${bmi.id}"<i class="far fa-trash-alt"></i></a>
+            <br>
+            <!-- Table -->
+            <table class = "table">
+                <thead>
+                    <tr>
+                        <th>Datum & Uhrzeit</th>                    
+                        <th>Größe (in cm)</th>
+                        <th>Gewicht (in kg)</th>
+                        <th>Body Mass Index (BMI)</th>
 
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <!-- Table end -->
+                    </tr>
+                </thead>
+                <tbody>            
+                    <tr th:each="bmi: ${bmis}">                    
+                        <td th:text="${#temporals.format(bmi.tageszeit, 'dd.MM.yyyy - HH:mm')}"></td>
+                        <td th:text="${#numbers.formatDecimal(bmi.groesse,1,0)}"></td>
+                        <td th:text="${#numbers.formatDecimal(bmi.gewicht,1,0)}"></td>
+                        <td th:text="${#numbers.formatDecimal(bmi.Bmi,1,2)}"></td>
 
-        <!-- Graph Start -->
 
-    <br>
-    <!-- Graph Ende -->
-    
-<!-- Thomas Test Popup Text
-<script th:inline="javascript">
-/*<![CDATA[*/
+                        <td class="action">
+                            <a th:href="'delete?id=' + ${bmi.id}"<i class="far fa-trash-alt"></i></a>
 
-var message = [[${message}]];
-alert(message);
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Table end -->
 
-/*]]>*/
-</script> -->
+            <!-- Graph Start -->
 
-        <div class="footer">
-            <p>Copyright &copy; Dominque Mariacher <script>new Date().getFullYear() > 2010 && document.write(+new Date().getFullYear());</script></p>
-        </div>
+            <br>
+            <!-- Graph Ende -->
+
+            <!-- Thomas Test Popup Text
+            <script th:inline="javascript">
+            /*<![CDATA[*/
+            
+            var message = [[${message}]];
+            alert(message);
+            
+            /*]]>*/
+            </script> -->
+
+            <div class="footer">
+            <p>Copyright &copy; Dominique Mariacher <script>new Date().getFullYear() > 2010 && document.write( + new Date().getFullYear());</script></p>
+            </div>
 
     </body>
 </html>

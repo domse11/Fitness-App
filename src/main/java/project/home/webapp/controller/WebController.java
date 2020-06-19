@@ -1,6 +1,5 @@
 package project.home.webapp.controller;
 
-import static java.nio.file.Files.size;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -8,71 +7,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.home.webapp.data.Bmi;
 import project.home.webapp.data.BmiSessionData;
-import project.home.webapp.repository.BmiRepository;
 
 @Controller
 public class WebController {
 
-    @Autowired   
+    @Autowired
     private BmiSessionData bmidata;
 
     private void fillGraphBmi(Model model) {
-   
-    List<Bmi> bmis = bmidata.getBmis();
-    
-    int size = bmis.size();
-    
-    String[] datum = new String[size];
-    Double[] bmi = new Double[size];
-    
-    
-    for (int pos = 0; pos < bmis.size(); pos++){
-        Bmi bmiz = bmis.get(pos);
-        datum[pos] = bmiz.getTageszeit().toString();
-        bmi[pos] = bmiz.getBmi();
-    }
-            
-        
-    model.addAttribute("bmiGewicht", bmi);
-    model.addAttribute("grapDatum",datum);
-   
-    }
-    
-    @GetMapping({"/start", "/"})
-    public String start(Model model) {
-        model.addAttribute("item", new Bmi()); 
-       return "start";
+
+        List<Bmi> bmis = bmidata.getBmis();
+
+        int size = bmis.size();
+
+        String[] datum = new String[size];
+        Double[] bmi = new Double[size];
+
+        for (int pos = 0; pos < bmis.size(); pos++) {
+            Bmi bmiz = bmis.get(pos);
+            datum[pos] = bmiz.getTageszeit().toString();
+            bmi[pos] = bmiz.getBmi();
+        }
+
+        model.addAttribute("graphBmi", bmi);
+        model.addAttribute("graphDatum", datum);
+
     }
 
-    
-    // Contact Page -- obsolete -- 
-    @GetMapping("/contact")
+    @GetMapping({"/start", "/"})
+    public String start(Model model) {
+        model.addAttribute("item", new Bmi());
+        return "start";
+    }
+
+    // Contact Page -- obsolete --
+    /*@GetMapping("/contact")
     public String contact(Model model) {
         model.addAttribute("item", new Bmi());
         return "contact";
-    }
-
-    // alte Startseite (Test)
+    }*/
+    // Contact Page -- obsolte --
+    // old Startpage -- obsolte --
     /*@GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("item", new Bmi());
         return "index";
     }
-   /*@GetMapping("/")
-    public String checkBmiInfo(@Valid Bmi bmi, BindingResult bindingresult){
-        if (bindingResult.hasErrors()){
-            return "start";
-        }
-        return "redirect:/ausgabebmi";
-    }*/
-    //Testen ob Daten in die DB geschrieben worden sind
+     // old Startpage -- obsolte --
+
+    // Test if data was stored in DB
     /*
     @GetMapping("/bmi")
     public String showBmi(Model model) {
@@ -83,71 +72,108 @@ public class WebController {
         return "show_bmi";
     }
      */
+    // Test if data was stored in DB END
     private List<String> bmis = new ArrayList<>();
 
     @PostMapping("/ausgabebmi")
     public String ausgabebmi(Model model,
-            @Valid Bmi info,
+            @Valid @ModelAttribute("item") Bmi info,
             BindingResult bindingResult) {
-        /* Thomas 
-        model.addAttribute("message", "Hallo Welt");*/
-        if (bindingResult.hasErrors()) {
-            bindingResult.addError(new ObjectError("bmi", "Fehler!!!"));
+        if (bindingResult.hasErrors()) {//
             System.out.println("Fehler bei Validierung");
-            model.addAttribute("errorMsg", "Fehler beim Speichern (Validierungsfehler)!");
-            bindingResult.rejectValue("bmi", "not.valid");
             model.addAttribute("item", info);
-            return "redirect:/start";
+            return "start";
         }
         info.setTageszeit();
         info.getBmi();
         /*Bmi ausgabe auf der Console
         System.out.println(info.toString());*/
-        bmiRepository.save(info);
-        BmiSessionData.save(info);
-        bmis.save(info);
-        bmidata.save(info);
+        bmidata.updateBmi(info);
 
-        List<Bmi> bmis = bmidata.findAll();
+        List<Bmi> bmis = bmidata.getBmis();
+        showBMI(model, info);
         model.addAttribute("bmis", bmis);
         model.addAttribute("item", info);
-        fillGraphBmi(model);               
-                
+        fillGraphBmi(model);
+
         return "ausgabebmi";
     }
 
     @GetMapping({"/ausgabebmi"})
     public String linkausgabebmi(Model model) {
         model.addAttribute("item", new Bmi());
-        List<Bmi> bmis = bmiRepository.findAll();
-        model.addAttribute("bmis", bmis);
+        // List<Bmi> bmis = bmiRepository.findAll();
+        List<Bmi> bmis = bmidata.getBmis();
 
+        // 0 - 1 ist ein doofer index
+        Bmi info = bmis.get(bmis.size() - 1);
+        showBMI(model, info);
+        model.addAttribute("item", info);
+        model.addAttribute("bmis", bmis);
         fillGraphBmi(model);
-        
+
         return "ausgabebmi";
     }
 
     @GetMapping("delete")
     public String delete(Model model,
             @RequestParam(name = "id") int id) {
-        Bmi last = bmidata.findAll().get((int) bmiRepository.count() - 1);
-        bmiRepository.deleteById(id);
+        Bmi last = bmidata.getlast();
+        bmidata.deleteBmi(id);
         if (id == last.getId()) {
             return "redirect:/start";
         }
         return "redirect:/ausgabebmi";
     }
 
-    //testdaten
-    @GetMapping("/ausgabebmi/bmiliste")
-    public String createBmi() {
-        int pos = 0;
-        Bmi bmi = new Bmi(++pos, 180, 90);
+    /* //testdaten
+	@GetMapping("/ausgabebmi/bmiliste")
+	public String createBmi() {
+		int pos = 0;
+		Bmi bmi = new Bmi(++pos, 180, 90);
 
-        bmiRepository.save(bmi);
+		bmiRepository.save(bmi);
 
-        return "bmi_created";
+		return "bmi_created";
+	}
+     */
+    private void showBMI(Model model, Bmi item) {
+        String classBMI = "";
+        String bemerkung = "";
+        String bemerkunglang = "";
+        double bmi = item.getBmi();
+        if (bmi < 16.0) {
+            classBMI = "Starkes Untergewicht!";
+            bemerkung = "Ihr Gewicht ist gesundheitsgefährdend gering.";
+            bemerkunglang = "Bitte begeben Sie sich in ärztliche Hände!";
+        } else if (bmi >= 16.0 && bmi < 18.5) {
+            classBMI = "Untergewicht";
+            bemerkung = "Ihr Gewicht bewegt sich im unteren Segment.";
+            bemerkunglang = "Nehmen sie mehr Kalorien zu sich!";
+        } else if (bmi >= 18.5 && bmi < 25.0) {
+            classBMI = "Normalgewicht";
+            bemerkung = "Ihr Gewicht befindet sich im Normalbereich.";
+            bemerkunglang = "Geben Sie weiterhin gut auf sich acht.";
+        } else if (bmi >= 25.0 && bmi < 30.0) {
+            classBMI = "Übergewicht - Präadipositas";
+            bemerkung = "Sie sind leicht übergewichtig.";
+            bemerkunglang = "Achten Sie auf eine ausgewogene Ernährungsweise und versuchen Sie mehr Sport zu treiben!";
+        } else if (bmi >= 30.0 && bmi < 35.0) {
+            classBMI = "Adipositas Grad  I";
+            bemerkung = "Ihr Risiko für Folgeerkrankungen ist erhöht.";
+            bemerkunglang = "Eine Gewichtsreduktion wird stark empfohlen.";
+        } else if (bmi >= 35.0 && bmi < 40.0) {
+            classBMI = "Adipositas Grad  II";
+            bemerkung = "Sie haben ein erhöhtes Risiko eine Herz-Kreislauf Erkrankung zu entwickeln.";
+            bemerkunglang = "Reduzieren sie ihr Gewicht und achten sie auf einen gesünderen Lebensstil!";
+        } else if (bmi >= 40.0) {
+            classBMI = "Adipositas Grad III";
+            bemerkung = "Ihr Gewicht ist stark erhöht.";
+            bemerkunglang = "Konsultieren Sie Ihren Arzt und nehmen Sie ab um Folgeerkrankungen zu vermeiden!";
+
+        }
+        model.addAttribute("bemerkung", bemerkung);
+        model.addAttribute("class", classBMI);
+        model.addAttribute("bemerkunglang", bemerkunglang);
     }
-    
-  
 }

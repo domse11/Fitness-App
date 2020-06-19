@@ -27,7 +27,6 @@ public class BmiSessionData {
 
     public void deleteBmi(int id) {
         bmiRepository.deleteById(id);
-
     }
 
     public Bmi getlast() {
@@ -46,5 +45,4 @@ public class BmiSessionData {
         return new Bmi();
     }
 
-    
 }

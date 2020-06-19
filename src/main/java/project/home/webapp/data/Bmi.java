@@ -11,8 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.Range;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -21,24 +20,19 @@ public class Bmi implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
-   
-    @NotNull(message="Bitte einen Text eingeben")
-    @Min(140)
-    @Max(220) 
-    //@NotEmpty(message="Bitte eine Größe eingeben")
-    // @NotNull
-    private double groesse; 
 
-    @NotNull
-    @Min(40)
-    @Max(120)
-    //@NotEmpty(message="Bitte ein Gewicht eingeben")
-     //@NotNull(message="Bitte ein Gewicht eingeben")
+
+    @Min(value = 140, message = "Bitte geben Sie einen Wert größer als 140 ein")
+    @Max(value = 220, message = "Bitte geben Sie einen Wert kleiner als 220 ein")
+    private double groesse;
+
+    @NotNull (message = "Bitte geben Sie einen Wert größer als 0 an")
+    @Min(value = 40, message = "Bitte geben Sie einen Wert größer als 40 ein")
+    @Max(value = 250, message = "Bitte geben Sie einen Wert kleiner als 250 ein")
     private double gewicht;
-        
+
     private double bmi;
-    
+
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDateTime tageszeit;
 
@@ -78,7 +72,9 @@ public class Bmi implements Serializable{
     }
 
     public final double getBmi() {
-        bmi = gewicht / (groesse * groesse) * 10000;
+        double zwbmi =0.0;
+        zwbmi = Math.round(gewicht / (groesse * groesse) * 1000000);
+        bmi = zwbmi/100;
         return bmi;
     }
 
@@ -139,5 +135,7 @@ public class Bmi implements Serializable{
     public void addAttribute(String bmi, double gewicht) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 
 }
