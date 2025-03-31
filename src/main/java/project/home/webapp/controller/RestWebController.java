@@ -16,58 +16,59 @@ import java.util.List;
 @RestController
 public class RestWebController {
 
-	@Autowired
-	private UserWorkoutRepository eventRepository;
+	   @Autowired
+    private UserWorkoutRepository eventRepository;
 
-	@GetMapping(value = "/events")
-	public List<UserWorkout> getEventsInRange(@RequestParam(value = "start", required = false) String start,
-											  @RequestParam(value = "end", required = false) String end) {
-		if ((start == null || start.isEmpty()) || (end == null || end.isEmpty())) {
-			return eventRepository.findAll();
-		}
+    @GetMapping(value = "/events")
+    public List<UserWorkout> getEventsInRange(@RequestParam(value = "start", required = false) String start,
+            @RequestParam(value = "end", required = false) String end) {
+        if ((start == null || start.isEmpty()) || (end == null || end.isEmpty())) {
+            return eventRepository.findAll();
+        }
 
-		Instant startDate;
-		Instant endDate;
-		SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Instant startDate;
+        Instant endDate;
+        SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-		try {
-			startDate = inputDateFormat.parse(start).toInstant();
-		} catch (ParseException e) {
-			throw new BadDateFormatException("bad start date: " + start);
-		}
+        try {
+            startDate = inputDateFormat.parse(start).toInstant();
+        } catch (ParseException e) {
+            throw new BadDateFormatException("bad start date: " + start);
+        }
 
-		try {
-			endDate = inputDateFormat.parse(end).toInstant();
-		} catch (ParseException e) {
-			throw new BadDateFormatException("bad end date: " + end);
-		}
+        try {
+            endDate = inputDateFormat.parse(end).toInstant();
+        } catch (ParseException e) {
+            throw new BadDateFormatException("bad end date: " + end);
+        }
 
-		return eventRepository.findByStartAfterAndEndBefore(startDate, endDate);
-	}
+        return eventRepository.findByStartAfterAndEndBefore(startDate, endDate);
+    }
 
-	@PostMapping(value = "/events")
-	public UserWorkout addEvent(@RequestBody UserWorkout event) {
-		return eventRepository.save(event);
-	}
+    @PostMapping(value = "/events")
+    public UserWorkout addEvent(@RequestBody UserWorkout event) {
+        return eventRepository.save(event);
+    }
 
-	@PutMapping(value = "/events")
-	public UserWorkout updateEvent(@RequestBody UserWorkout event) {
-		return eventRepository.save(event);
-	}
+    @PutMapping(value = "/events")
+    public UserWorkout updateEvent(@RequestBody UserWorkout event) {
+        return eventRepository.save(event);
+    }
 
-	@DeleteMapping(value = "/events/{id}")
-	public void removeEvent(@PathVariable("id") String id) {
-		eventRepository.deleteById(Integer.valueOf(id));
-	}
+    @DeleteMapping(value = "/events/{id}")
+    public void removeEvent(@PathVariable("id") String id) {
+        eventRepository.deleteById(Integer.valueOf(id));
+    }
 }
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 class BadDateFormatException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
 
-	public BadDateFormatException(String dateString) {
-		super(dateString);
-	}
+    private static final long serialVersionUID = 1L;
+
+    public BadDateFormatException(String dateString) {
+        super(dateString);
+    }
 }
     
 

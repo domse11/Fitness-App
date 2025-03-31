@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 async function getAllEvents() {
     const response = await fetch('/events');
     const jsonResponse = await response.json();
-    console.log(jsonResponse); // nur für debugging Zwecke damit man etwas in der Console sieht
+    //console.log(jsonResponse); // nur für debugging Zwecke damit man etwas in der Console sieht
     return jsonResponse;
 }
 
@@ -195,7 +195,7 @@ async function getAllEventsForThisWeek(date) {
     const end = getEndOfWeek(date).toISOString().substr(0, 10);
     const response = await fetch(`/events?start=${start}&end=${end}`);
     const jsonResponse = await response.json();
-    console.log(jsonResponse); // nur für debugging Zwecke damit man etwas in der Console sieht
+    //console.log(jsonResponse); // nur für debugging Zwecke damit man etwas in der Console sieht
     return jsonResponse;
 }
 
@@ -209,7 +209,7 @@ async function createEvent(event) {
         body: JSON.stringify(event)
     });
     const jsonResponse = await response.json();
-    console.log(jsonResponse);// nur für debugging Zwecke damit man etwas in der Console sieht
+    //console.log(jsonResponse);// nur für debugging Zwecke damit man etwas in der Console sieht
 }
 
 // aktualisiert ein exisiterendes Event

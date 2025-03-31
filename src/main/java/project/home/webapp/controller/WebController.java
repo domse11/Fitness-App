@@ -62,17 +62,16 @@ public class WebController {
      // old Startpage -- obsolte --
 
     // Test if data was stored in DB
-    /*
-    @GetMapping("/bmi")
+    /*@GetMapping("/bmi")
     public String showBmi(Model model) {
 
         List<Bmi> bmis = bmiRepository.findAll();
         model.addAttribute("bmis", bmis);
 
         return "show_bmi";
-    }
-     */
+    } */    
     // Test if data was stored in DB END
+    
     private List<String> bmis = new ArrayList<>();
 
     @PostMapping("/ausgabebmi")
@@ -105,7 +104,6 @@ public class WebController {
         // List<Bmi> bmis = bmiRepository.findAll();
         List<Bmi> bmis = bmidata.getBmis();
 
-        // 0 - 1 ist ein doofer index
         Bmi info = bmis.get(bmis.size() - 1);
         showBMI(model, info);
         model.addAttribute("item", info);
