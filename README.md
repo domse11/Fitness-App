@@ -1,46 +1,79 @@
-🏋️‍♀️ Fitness Web Applikation
-Beschreibung (Deutsch)
+🏋️‍♀️ Fitness Web App – Mein erstes Spring Boot Projekt
 
-Dies ist mein erstes Spring Boot Projekt: eine selbstentwickelte Fitness-Webanwendung, die grundlegende Funktionen für Fitnessinteressierte bietet – auch ohne technische Vorkenntnisse nutzbar. Ziel war es, praktische Funktionen mit modernen Webtechnologien zu verbinden und dabei umfassende Erfahrung in der Fullstack-Entwicklung zu sammeln.
-✨ Features
+Dieses Repository enthält mein erstes vollständiges Spring Boot Projekt:  
+Eine selbstentwickelte Fitness-Webanwendung, die sportliche Aktivitäten unterstützt und Fitnessdaten wie den BMI visualisiert.  
+Mein Ziel war es, eine Anwendung zu bauen, die **auch für Laien einfach nutzbar** ist und gleichzeitig meine Fullstack-Kenntnisse festigt.
 
-    BMI-Rechner mit Rundung auf zwei Nachkommastellen
+---
 
-    Kalender zur Planung sportlicher Aktivitäten (basierend auf FullCalendar.js)
+🎯 Ziel des Projekts
 
-    Datenbankanbindung mittels MySQL und Java
+Mit dieser Applikation wollte ich Theorie und Praxis verbinden – nach dem Motto:  
+**Learning by doing.**
 
-    Statistische Auswertung von Aktivitäten mit Plotly.js
+- Webentwicklung mit Spring Boot & Thymeleaf lernen
+- JavaScript verstehen und gezielt einsetzen (z. B. FullCalendar, Plotly)
+- Grundlagen der Datenbankanbindung mit MySQL umsetzen
+- Eigenständig ein Fullstack-Projekt umsetzen
+- Eine benutzerfreundliche Oberfläche gestalten
 
-    Benutzerfreundliches Design mit HTML, CSS und Thymeleaf
+---
 
-🔧 Technologien
+🛠️ Verwendete Technologien
 
-    Java (Spring Boot & Spring MVC)
+- **Java**, Spring Boot, Spring MVC
+- **HTML**, **CSS**, **JavaScript**
+- **Thymeleaf** (Server-side Rendering)
+- **MySQL** (Datenbank)
+- **Plotly.js** (Statistik/Graphen)
+- **FullCalendar.js** (Kalenderfunktion)
 
-    JavaScript
+---
 
-    HTML / CSS
+📌 Features
 
-    Thymeleaf
+- ✅ BMI-Rechner mit sauber gerundeten Werten
+- ✅ Kalender zur Planung von Aktivitäten
+- ✅ Datenbank-Anbindung für Benutzer-Eingaben
+- ✅ Visualisierung von Fitnessdaten mit Graphen
+- ✅ Klar strukturierte Benutzeroberfläche
 
-    MySQL
+---
 
-    Plotly.js
+⚠️ Herausforderungen
 
-    FullCalendar.js
+- Einstieg in Spring Boot & Java Webentwicklung
+- Verständnis komplexer JavaScript-Logik (z. B. Events mit FullCalendar)
+- Umgang mit Nachkommastellen bei Berechnungen und Darstellungen
+- Kombination von Backend, Frontend und Datenbank in einem Projekt
+- Zeitmanagement zwischen Beruf und Entwicklung
 
-📈 Motivation
+---
 
-Meine Leidenschaft für Fitness und Webentwicklung hat mich dazu inspiriert, diese Applikation zu entwickeln. Mit diesem Projekt wollte ich nicht nur eine nützliche Anwendung erschaffen, sondern auch mein Wissen in der Java- und Webentwicklung vertiefen.
-🔍 Herausforderungen
+⏱️ Projektzeit
 
-    Umgang mit Nachkommastellen im BMI-Rechner
+> Gesamtaufwand: **~108 Stunden**  
+> (inkl. Konzeption, Entwicklung, Debugging und Testing)
 
-    Einbindung und Verständnis komplexer JavaScript-Komponenten (z. B. FullCalendar)
+---
 
-    Datenbankintegration mit Benutzerfreundlichkeit
+🔮 Zukünftige Ideen
 
-    Einstieg in Spring Boot und das Spring Framework
+- 📲 Anbindung an Smartwatches (Schrittzähler, Herzfrequenz)
+- 👥 Multi-User-Unterstützung
+- 🍽️ Kalorienrechner & Ernährungstagebuch
+- 💬 Motivationssprüche & Übungskatalog
+- 🥦 Anbindung an Lebensmitteldatenbank (FDDP-Client)
 
-    Zeitmanagement bei paralleler Berufstätigkeit
+---
+
+📎 Hinweis
+
+Dies ist ein abgeschlossenes Lernprojekt, aber es kann jederzeit erweitert oder optimiert werden.  
+Es diente vorrangig dazu, **praktisch in die Fullstack-Webentwicklung mit Java einzusteigen** und erste Projekterfahrung zu sammeln.
+
+---
+
+🧠 Zitat, das mich beim Projekt begleitet hat:
+
+> _"Well done is better than well said." – Benjamin Franklin_
