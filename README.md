@@ -4,6 +4,9 @@ Dieses Repository enthält mein erstes vollständiges Spring Boot Projekt:
 Eine selbstentwickelte Fitness-Webanwendung, die sportliche Aktivitäten unterstützt und Fitnessdaten wie den BMI visualisiert.  
 Mein Ziel war es, eine Anwendung zu bauen, die **auch für Laien einfach nutzbar** ist und gleichzeitig meine Fullstack-Kenntnisse festigt.
 
+Hier zur Präsentation mit Screenshots.
+📊 [Zur Projektpräsentation (PowerPoint)](docs/Projektpraesentation_FitnessApp.pptx)
+
 ---
 
 🎯 Ziel des Projekts
